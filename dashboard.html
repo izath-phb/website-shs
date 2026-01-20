@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="bg-gray-100 flex">
+
+<!-- ================= SIDEBAR ================= -->
+<aside class="w-64 bg-white border-r flex flex-col min-h-screen">
+
+  <!-- BRAND -->
+  <div class="p-6 flex items-center gap-3 border-b">
+    <img src="assets/logo_SmartHealth_Sense.png" class="h-20 w-20 object-contain">
+    <span class="font-bold text-green-600 text-lg">Smart Health Sense</span>
+  </div>
+
+  <!-- ADMIN INFO -->
+  <div class="px-6 py-4 border-b text-sm">
+    <p class="text-gray-500">Login sebagai</p>
+    <p id="admin-name" class="font-semibold text-gray-800">-</p>
+    <span class="inline-block mt-1 text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
+      ADMIN
+    </span>
+  </div>
+
+  <!-- MENU -->
+  <nav class="flex-1 p-4 space-y-2 text-sm">
+    <a href="dashboard.html" class="block px-4 py-2 rounded-lg hover:bg-green-100">Dashboard</a>
+    <a href="users.html" class="block px-4 py-2 rounded-lg hover:bg-green-100">Users</a>
+    <a href="bmi.html" class="block px-4 py-2 rounded-lg hover:bg-green-100">BMI</a>
+    <a href="feedback.html" class="block px-4 py-2 rounded-lg hover:bg-green-100">Feedback</a>
+  </nav>
+
+  <!-- LOGOUT -->
+  <div class="p-4 border-t">
+    <button onclick="logout()"
+      class="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-lg transition">
+      Logout
+    </button>
+  </div>
+</aside>
+
+<!-- ================= CONTENT ================= -->
+<main class="flex-1 p-8">
+
+  <h1 class="text-3xl font-bold mb-6">Admin Dashboard</h1>
+
+  <!-- STAT CARDS -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+    <div class="bg-white p-6 rounded shadow">
+      <h3 class="text-gray-500">Total Users</h3>
+      <p id="totalUsers" class="text-3xl font-bold mt-2">...</p>
+    </div>
+
+    <div class="bg-white p-6 rounded shadow">
+      <h3 class="text-gray-500">Total Feedback</h3>
+      <p id="totalFeedback" class="text-3xl font-bold mt-2">...</p>
+    </div>
+
+    <div class="bg-white p-6 rounded shadow">
+      <h3 class="text-gray-500">Rata-rata Rating (Keseluruhan)</h3>
+      <p id="avgRating" class="text-3xl font-bold mt-2">...</p>
+    </div>
+  </div>
+
+  <!-- CHARTS -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="bg-white p-6 rounded shadow">
+      <canvas id="bmiChart"></canvas>
+    </div>
+
+    <div class="bg-white p-6 rounded shadow">
+      <canvas id="feedbackChart"></canvas>
+    </div>
+
+    <div class="bg-white p-6 rounded shadow md:col-span-2">
+      <canvas id="chatbotChart"></canvas>
+    </div>
+  </div>
+
+</main>
+
+<!-- ================= SCRIPTS ================= -->
+<script src="js/auth.js"></script>
+<script src="js/dashboard.js"></script>
+
+<script>
+  // Proteksi admin (TIDAK DIUBAH)
+  protectAdminPage();
+
+  // Ambil user dari localStorage
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+
+  // TAMPILKAN NAMA SAJA (TANPA EMAIL & TANPA "administrator")
+  document.getElementById("admin-name").innerText =
+    user.name && user.name.trim() !== ""
+      ? user.name
+      : "Admin";
+</script>
+
+</body>
+</html>

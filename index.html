@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Smart Health Sense</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* ================= Scroll Reveal Animation ================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-out;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Staggered animation for cards */
+    .reveal.stagger-1 { transition-delay: 0.1s; }
+    .reveal.stagger-2 { transition-delay: 0.2s; }
+    .reveal.stagger-3 { transition-delay: 0.3s; }
+    .reveal.stagger-4 { transition-delay: 0.4s; }
+    .reveal.stagger-5 { transition-delay: 0.5s; }
+    .reveal.stagger-6 { transition-delay: 0.6s; }
+
+    /* Hero background pulse */
+    @keyframes pulseSlow {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.2); opacity: 0.3; }
+    }
+    .animate-pulse-slow { animation: pulseSlow 8s infinite; }
+
+    /* Smooth transform for parallax circles */
+    .parallax-circle {
+      transition: transform 0.2s ease-out;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 scroll-smooth">
+
+<!-- ================= NAVBAR ================= -->
+<nav class="bg-white/90 backdrop-blur shadow fixed w-full z-20">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <!-- BRAND -->
+    <div class="flex items-center gap-3 overflow-visible">
+      <img src="assets/logo_SmartHealth_Sense.png"
+           alt="Smart Health Sense"
+           class="h-20 w-20 object-contain -my-2">
+      <h1 class="text-2xl font-bold text-green-600">Smart Health Sense</h1>
+    </div>
+    <!-- MENU -->
+    <div class="flex gap-3 items-center">
+      <a href="#fitur" class="hidden md:block hover:text-green-600">Fitur</a>
+      <a href="#teknologi" class="hidden md:block hover:text-green-600">Teknologi</a>
+      <a href="#tentang" class="hidden md:block hover:text-green-600">Tentang</a>
+      <a href="#developer" class="hidden md:block hover:text-green-600">Developer</a>
+
+      <!-- GUEST NAV -->
+      <div id="nav-guest" class="flex gap-3">
+        <a href="login.html"
+          class="border border-green-600 text-green-600 px-4 py-2 rounded-lg hover:bg-green-600 hover:text-white transition">
+          Login
+        </a>
+        <a href="register.html"
+          class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
+          Daftar
+        </a>
+      </div>
+
+      <!-- USER NAV -->
+      <div id="nav-user" class="hidden flex items-center gap-3">
+        <span class="text-sm font-semibold">
+          👋 <span id="nav-user-email"></span>
+        </span>
+        <button onclick="logout()"
+          class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
+          Logout
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section class="pt-36 pb-24 bg-gradient-to-br from-green-500 via-emerald-500 to-blue-600 text-white relative overflow-hidden">
+  <!-- Animated parallax circles -->
+  <div class="absolute -top-32 -left-32 w-96 h-96 bg-white/10 rounded-full animate-pulse-slow parallax-circle" id="circle1"></div>
+  <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-white/10 rounded-full animate-pulse-slow parallax-circle" id="circle2"></div>
+
+  <div class="max-w-6xl mx-auto px-6 text-center relative z-10">
+    <h2 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight reveal">
+      Aplikasi Pintar <br class="hidden md:block"> Pemantauan Kesehatan
+    </h2>
+
+    <p class="text-lg md:text-xl mb-10 max-w-3xl mx-auto reveal">
+      Smart Health Sense adalah aplikasi berbasis AI untuk mendeteksi obesitas,
+      menganalisis kalori makanan, memantau gaya hidup, dan memberikan
+      rekomendasi kesehatan secara personal.
+    </p>
+
+    <div class="flex flex-col sm:flex-row justify-center gap-4 reveal">
+      <a href="https://drive.google.com/your_apk_link_here"
+        class="bg-white text-green-700 px-8 py-3 rounded-xl font-semibold shadow-lg hover:scale-105 transform transition">
+        📱 Download Aplikasi (Android)
+      </a>
+
+      <a href="#fitur"
+        class="border border-white px-8 py-3 rounded-xl hover:bg-white hover:text-green-700 transition transform hover:scale-105">
+        Lihat Fitur
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FITUR ================= -->
+<section id="fitur" class="py-24 max-w-7xl mx-auto px-6">
+  <h3 class="text-3xl md:text-4xl font-bold text-center mb-14 reveal">
+    Fitur Unggulan
+  </h3>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 reveal stagger-1">
+      <h4 class="font-bold text-xl mb-3">🧠 Deteksi Obesitas (CNN)</h4>
+      <p>Mendeteksi tingkat obesitas menggunakan Deep Learning berbasis gambar tubuh.</p>
+    </div>
+    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 reveal stagger-2">
+      <h4 class="font-bold text-xl mb-3">🍱 Deteksi Makanan & Kalori</h4>
+      <p>Menganalisis gambar makanan dan menghitung estimasi kalori secara otomatis.</p>
+    </div>
+    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 reveal stagger-3">
+      <h4 class="font-bold text-xl mb-3">💬 Chatbot Kesehatan AI</h4>
+      <p>Asisten virtual untuk konsultasi kesehatan berbasis AI.</p>
+    </div>
+    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 reveal stagger-4">
+      <h4 class="font-bold text-xl mb-3">📊 BMI & Gaya Hidup</h4>
+      <p>Pemantauan BMI, aktivitas harian, dan kebiasaan hidup sehat.</p>
+    </div>
+    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 reveal stagger-5">
+      <h4 class="font-bold text-xl mb-3">📈 Dashboard Admin</h4>
+      <p>Admin memantau statistik pengguna dan performa sistem.</p>
+    </div>
+    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 reveal stagger-6">
+      <h4 class="font-bold text-xl mb-3">🔐 Login Aman</h4>
+      <p>Autentikasi aman menggunakan Email & Google OAuth.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TEKNOLOGI ================= -->
+<section id="teknologi" class="py-24 max-w-7xl mx-auto px-6">
+  <h3 class="text-3xl md:text-4xl font-bold text-center mb-14 reveal">Teknologi yang Digunakan</h3>
+  <div class="grid grid-cols-2 md:grid-cols-5 gap-6 text-center">
+    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 reveal stagger-1">Flutter</div>
+    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 reveal stagger-2">Flask API</div>
+    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 reveal stagger-3">CNN / AI</div>
+    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 reveal stagger-4">MySQL</div>
+    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 reveal stagger-5">JWT & OAuth</div>
+  </div>
+</section>
+
+<!-- ================= TENTANG ================= -->
+<section id="tentang" class="py-24 max-w-7xl mx-auto px-6 bg-gray-50">
+  <h3 class="text-3xl md:text-4xl font-bold text-center mb-10 reveal">Tentang Smart Health Sense</h3>
+  <p class="text-center max-w-3xl mx-auto text-lg reveal">
+    Smart Health Sense adalah proyek Capstone yang dibuat untuk mempermudah pemantauan kesehatan secara digital.
+    Aplikasi ini memanfaatkan teknologi AI untuk mendeteksi obesitas, menghitung kalori makanan, dan memberikan rekomendasi gaya hidup sehat.
+  </p>
+</section>
+
+<!-- ================= DEVELOPMENT ================= -->
+<section id="developer" class="py-24 max-w-7xl mx-auto px-6 bg-gray-100">
+  <h3 class="text-3xl md:text-4xl font-bold text-center mb-10 reveal">Tim Developer</h3>
+  <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-8 text-center">
+    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 reveal">
+      <h4 class="font-bold text-xl mb-2">Izath</h4>
+      <p>Backend & AI Integration</p>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 reveal">
+      <h4 class="font-bold text-xl mb-2">Riyan</h4>
+      <p>Frontend & UX/UI Design</p>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 reveal">
+      <h4 class="font-bold text-xl mb-2">Rafi</h4>
+      <p>AI Model Development</p>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 reveal">
+      <h4 class="font-bold text-xl mb-2">Hilmy</h4>
+      <p>Database & API Management</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AKSES USER ================= -->
+<section class="bg-gray-100 py-24 text-center">
+  <h3 class="text-3xl font-bold mb-6 reveal">Akses Pengguna</h3>
+  <p class="mb-10 max-w-2xl mx-auto reveal">
+    Pengguna dapat mendaftar dan login menggunakan email atau akun Google.
+  </p>
+  <!-- GUEST -->
+  <div id="guest-actions" class="space-y-6 reveal">
+    <div class="flex flex-col sm:flex-row justify-center gap-4">
+      <a href="register.html"
+        class="bg-green-600 text-white px-8 py-3 rounded-xl font-semibold hover:bg-green-700 transition">
+        Daftar
+      </a>
+      <a href="login.html"
+        class="border border-green-600 text-green-600 px-8 py-3 rounded-xl hover:bg-green-600 hover:text-white transition">
+        Login
+      </a>
+    </div>
+    <div class="flex items-center justify-center gap-3">
+      <span class="h-px w-16 bg-gray-300"></span>
+      <span class="text-sm text-gray-500">atau</span>
+      <span class="h-px w-16 bg-gray-300"></span>
+    </div>
+    <a href="login.html"
+      class="mx-auto flex items-center justify-center gap-2
+             bg-white px-8 py-3 rounded-xl shadow
+             hover:shadow-lg transition w-fit">
+      <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5">
+      Login dengan Google
+    </a>
+  </div>
+
+  <!-- USER -->
+  <div id="user-actions" class="hidden reveal">
+    <p class="mb-4 text-lg font-semibold">👋 Halo, <span id="user-email"></span></p>
+    <button onclick="logout()"
+      class="bg-red-500 text-white px-8 py-3 rounded-xl hover:bg-red-600 transition">
+      Logout
+    </button>
+  </div>
+</section>
+
+<!-- ================= SCRIPTS ================= -->
+<script>
+  // Scroll reveal
+  document.addEventListener("DOMContentLoaded", () => {
+    const revealElements = document.querySelectorAll(".reveal");
+    const revealOnScroll = () => {
+      const windowHeight = window.innerHeight;
+      revealElements.forEach(el => {
+        const elementTop = el.getBoundingClientRect().top;
+        const elementVisible = 100;
+        if (elementTop < windowHeight - elementVisible) el.classList.add("active");
+      });
+    };
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll();
+
+    // Parallax hero circles
+    const circle1 = document.getElementById("circle1");
+    const circle2 = document.getElementById("circle2");
+    window.addEventListener("scroll", () => {
+      const scrollY = window.scrollY;
+      circle1.style.transform = `translateY(${scrollY * 0.1}px)`;
+      circle2.style.transform = `translateY(${scrollY * -0.1}px)`;
+    });
+  });
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (user) {
+    document.getElementById("nav-user-email").innerText = user.email;
+    document.getElementById("user-email").innerText = user.email;
+    document.getElementById("nav-guest").classList.add("hidden");
+    document.getElementById("nav-user").classList.remove("hidden");
+    document.getElementById("guest-actions").classList.add("hidden");
+    document.getElementById("user-actions").classList.remove("hidden");
+  }
+
+  function logout() {
+    localStorage.clear();
+    window.location.href = "login.html";
+  }
+</script>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-gray-900 text-gray-400 py-6 text-center">
+  © 2025 <span class="text-white font-semibold">Smart Health Sense</span><br>
+  Sistem Pemantauan Kesehatan Berbasis Artificial Intelligence
+</footer>
+
+<!-- AUTH SCRIPT -->
+<script src="js/auth.js"></script>
+
+</body>
+</html>

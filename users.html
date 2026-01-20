@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Users</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex">
+
+<!-- ================= SIDEBAR ================= -->
+<aside class="w-64 bg-white border-r flex flex-col min-h-screen">
+
+  <!-- BRAND -->
+  <div class="p-6 flex items-center gap-3 border-b">
+    <img src="assets/logo_SmartHealth_Sense.png" class="h-20 w-20 object-contain">
+    <span class="font-bold text-green-600 text-lg">Smart Health Sense</span>
+  </div>
+
+  <!-- ADMIN INFO -->
+  <div class="px-6 py-4 border-b text-sm">
+    <p class="text-gray-500">Login sebagai</p>
+    <p id="admin-email" class="font-semibold text-gray-800">-</p>
+    <p id="admin-name" class="text-sm text-gray-500"></p>
+    <span class="inline-block mt-1 text-xs bg-green-100 text-green-700 px-2 py-1 rounded">ADMIN</span>
+  </div>
+
+  <!-- MENU -->
+ <nav class="flex-1 p-4 space-y-2 text-sm">
+    <a href="dashboard.html"
+       class="block px-4 py-2 rounded-lg hover:bg-green-100">
+       Dashboard
+    </a>
+
+    <a href="users.html"
+       class="block px-4 py-2 rounded-lg hover:bg-green-100">
+       Users
+    </a>
+
+    <a href="bmi.html"
+       class="block px-4 py-2 rounded-lg hover:bg-green-100">
+       BMI 
+    </a>
+
+    <a href="feedback.html"
+       class="block px-4 py-2 rounded-lg hover:bg-green-100">
+       Feedback
+    </a>
+  </nav>
+
+  <!-- LOGOUT -->
+  <div class="p-4 border-t">
+    <button onclick="logout()" class="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-lg transition">Logout</button>
+  </div>
+</aside>
+
+<!-- ================= CONTENT ================= -->
+<main class="flex-1 p-8">
+
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold">User Management</h1>
+    <button onclick="openAddUser()" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">+ Tambah User</button>
+  </div>
+
+  <table class="w-full border bg-white rounded shadow">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="px-4 py-2">ID</th>
+        <th class="px-4 py-2">Name</th>
+        <th class="px-4 py-2">Email</th>
+        <th class="px-4 py-2">Role</th>
+        <th class="px-4 py-2">Login</th>
+        <th class="px-4 py-2">Status</th>
+        <th class="px-4 py-2">Action</th>
+      </tr>
+    </thead>
+    <tbody id="usersTable"></tbody>
+  </table>
+</main>
+
+<!-- ================= MODAL ADD / EDIT ================= -->
+<div id="userModal" class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+  <div class="bg-white rounded-xl w-full max-w-md p-6">
+    <h2 id="modalTitle" class="text-xl font-bold mb-4">Tambah User</h2>
+
+    <input type="hidden" id="userId">
+
+    <div class="space-y-3">
+      <input id="userName" type="text" placeholder="Name" class="w-full border px-3 py-2 rounded">
+      <input id="userEmail" type="email" placeholder="Email" class="w-full border px-3 py-2 rounded">
+      <input id="userPassword" type="password" placeholder="Password (opsional)" class="w-full border px-3 py-2 rounded">
+      <select id="userRole" class="w-full border px-3 py-2 rounded">
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+      </select>
+    </div>
+
+    <div class="flex justify-end gap-2 mt-6">
+      <button onclick="closeModal()" class="px-4 py-2 border rounded">Batal</button>
+      <button onclick="saveUser()" class="bg-green-600 text-white px-4 py-2 rounded">Simpan</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= SCRIPTS ================= -->
+<script src="js/auth.js"></script>
+<script src="js/users.js"></script>
+<script>
+  // PROTECT HALAMAN & TAMPILKAN ADMIN INFO
+  protectAdminPage();
+ 
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+
+  const displayName =
+    user.name && user.name.trim() !== ""
+      ? user.name
+      : user.email;
+
+  document.getElementById("admin-email").innerText = displayName;
+</script>
+
+</body>
+</html>
