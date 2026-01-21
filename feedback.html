@@ -6,17 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-
 <body class="bg-gray-100 min-h-screen flex">
-
-<!-- SIDEBAR -->
 <aside class="w-64 bg-white border-r flex flex-col min-h-screen">
-
   <div class="p-6 flex items-center gap-3 border-b">
     <img src="assets/logo_SmartHealth_Sense.png" class="h-16 w-16 object-contain">
     <span class="font-bold text-green-600 text-lg">Smart Health Sense</span>
   </div>
-
   <div class="px-6 py-4 border-b text-sm">
     <p class="text-gray-500">Login sebagai</p>
     <p id="admin-email" class="font-semibold text-gray-800">-</p>
@@ -24,25 +19,32 @@
       ADMIN
     </span>
   </div>
-
   <nav class="flex-1 p-4 space-y-2 text-sm">
     <a href="dashboard.html" class="block px-4 py-2 rounded-lg hover:bg-green-100">Dashboard</a>
     <a href="users.html" class="block px-4 py-2 rounded-lg hover:bg-green-100">Users</a>
     <a href="bmi.html" class="block px-4 py-2 rounded-lg hover:bg-green-100">BMI</a>
-    <a href="feedback.html" class="block px-4 py-2 rounded-lg hover:bg-green-100">Feedback</a>
+    <a href="feedback.html" class="block px-4 py-2 rounded-lg hover:bg-green-100 bg-green-50 font-bold">Feedback</a>
   </nav>
-
   <div class="p-4 border-t">
     <button onclick="logout()" class="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-lg">
       Logout
     </button>
   </div>
 </aside>
-
-<!-- MAIN -->
 <main class="flex-1 p-8">
-  <h1 class="text-3xl font-bold mb-6">User Feedback</h1>
-
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold">User Feedback</h1>
+    <div class="flex gap-4">
+      <div class="bg-white p-4 rounded-lg shadow border-l-4 border-green-500 w-32">
+        <p class="text-[10px] text-gray-400 uppercase font-bold">Positif</p>
+        <p id="posPercent" class="text-xl font-bold text-green-600">0%</p>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow border-l-4 border-red-500 w-32">
+        <p class="text-[10px] text-gray-400 uppercase font-bold">Negatif</p>
+        <p id="negPercent" class="text-xl font-bold text-red-600">0%</p>
+      </div>
+    </div>
+  </div>
   <div class="bg-white rounded-lg shadow overflow-x-auto">
     <table class="w-full text-sm">
       <thead class="bg-gray-100">
@@ -51,6 +53,7 @@
           <th class="px-4 py-3 text-left">Type</th>
           <th class="px-4 py-3 text-left">Rating</th>
           <th class="px-4 py-3 text-left">Comment</th>
+          <th class="px-4 py-3 text-left">Sentiment</th>
           <th class="px-4 py-3 text-left">Tanggal</th>
           <th class="px-4 py-3 text-center">Action</th>
         </tr>
@@ -59,15 +62,12 @@
     </table>
   </div>
 </main>
-
 <script src="js/auth.js"></script>
 <script src="js/feedback.js"></script>
 <script>
   protectAdminPage();
   const user = JSON.parse(localStorage.getItem("user") || "{}");
-  document.getElementById("admin-email").innerText =
-    user.name && user.name.trim() !== "" ? user.name : user.email;
+  document.getElementById("admin-email").innerText = user.name && user.name.trim() !== "" ? user.name : user.email;
 </script>
-
 </body>
 </html>
