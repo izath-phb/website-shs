@@ -1,7 +1,7 @@
 // =========================
 // BASE API URL
 // =========================
-const API_BASE = "https://backend-leapcell-bslizath842-uv98p5s9.leapcell.dev/api";
+const API_BASE = "https://66vwqpgt-5000.asse.devtunnels.ms/api";
 /* =========================
    REGISTER USER
 ========================= */
